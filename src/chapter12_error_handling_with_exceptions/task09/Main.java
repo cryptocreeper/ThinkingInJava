@@ -1,21 +1,24 @@
 package chapter12_error_handling_with_exceptions.task09;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         try {
-            throw new Exception1();
-        } catch (Exception e) {
-            e.printStackTrace();
+            dangerousMethod();
+        } catch (Exception exception) {
+            System.out.println("Caught " + exception);
         }
-        try {
-            throw new Exception2();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            throw new Exception3();
-        } catch (Exception e) {
-            e.printStackTrace();
+    }
+
+    static void dangerousMethod() throws Exception1, Exception2, Exception3 {
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+
+        switch (randomNumber) {
+            case 0: throw new Exception1();
+            case 1: throw new Exception2();
+            case 2: throw new Exception3();
         }
     }
 }
